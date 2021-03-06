@@ -55,30 +55,38 @@ The following is the high-level system design for PWABuilder-AG.com.
 
 ## UI Workflow
 * CP visits PWABuilder.com or our clone site – PWABuilder-ag.com, types the domain and clicks “Start”
-![pwabuilder01.png](./images/pwabuilder01.png)
+ ![pwabuilder01.png](./images/pwabuilder01.png)
 
 * CP clicks on “Build My PWA”
-![pwabuilder02.png](./images/pwabuilder02.png)
+
+ ![pwabuilder02.png](./images/pwabuilder02.png)
 
 * CP will find the page with all possible app stores supported by PWABuilder. Currently PWABuilder supports Google, Microsoft and Samsung. Huawei will be the another app store supported by PWABuilder.com
-![pwabuilder03](./images/pwabuilder03.png)
+
+ ![pwabuilder03](./images/pwabuilder03.png)
 
 
 * Here is the detail Huawei app store UI design
-![pwabuilder04](./images/pwabuilder04.png)
+
+ ![pwabuilder04](./images/pwabuilder04.png)
 
  * Step 1: Customize AppGallery Android APK options. The Key and Key store passwords are required. Both passwords must be the same, and at least 6 characters long. User can use Get Icon function to get 10 icon URLs. This feature is driven by Google Custom Search Engine.
 ![pwabuilder05](./images/pwabuilder05.jpg)
 ![pwabuilder06](./images/pwabuilder06.jpg)
  
  * Step 2: Select which HMS kit (Push, Analytics, Ads) to include in APK.
+
  ![pwabuilder07](./images/pwabuilder07.jpg)
  
  * Step 3: Enter HMS Kit (Ads) configuration and upload agconnect-services.json. HMS Kit configuration will only be shown if HMS Ads Kit is selected.
+
  ![pwabuilder08](./images/pwabuilder08.jpg)
+
  * Step 4:
    * Option 1: Download APK - Developer can build and download the APK zip file.
+ 
    ![pwabuilder09](./images/pwabuilder09.jpg)
+ 
    When CP clicks “Build & Download My PWA” button, the follow flows will be started:
 1.  Verify all configurations.
 2.  Extract HMS kits configurations
@@ -91,7 +99,9 @@ The following is the high-level system design for PWABuilder-AG.com.
 9.  Download APK package to local browser Download Path
 
    * Option 2: Publish APK (Optional) Developer can use this option to publish their HMS APK to HUAWEI AppGallery Appstore directly. The following information is required:
+
    ![pwabuilder10](./images/pwabuilder10.jpg)
+
 * APK package from local path
 * Client ID
 * Client Key
@@ -106,6 +116,7 @@ Click “Publish APK to AppGallery” button to initiate the app submission.
 
 ## Data Structure
 * **Agconnect-services.json**
+
 ![agconnect-services.json.png](./images/agconnect-services.json.png)
 
 ## REST API
@@ -207,10 +218,12 @@ The build script uses the NPM library Commander to receive build inputs. Beyond 
 ### Git Operations
 Git init is called in case template path has not been initialized. Then git pull is called to check for updates from the template repo on GitHub. This check is done every time that the Build Script is called.
 https://github.com/bryantvu/HMS-PWA-Core-Template
+
 ![cli02.png](./images/cli02.png)
 
 ### PWA Builder CLI
 The PWA Builder CLI is given the URL and a temp path as the only 2 variable inputs. Although the documentation shows that –image can be used to add an app icon from a local path, testing shows that it does nothing at all. Setting the app icon is done manually in the File Modification step.
+
 ![cli03.png](./images/cli03.png)
 
 
@@ -233,6 +246,7 @@ The PWA Builder CLI is given the URL and a temp path as the only 2 variable inpu
 5.  App icon mipmap-xhdpi 
 6.  App icon mipmap-xxhdpi 
 7.  App icon mipmap-xxxhdpi 
+
 ![cli04.png](./images/cli04.png)
 
 ### Files Modified in Build Path
@@ -293,9 +307,11 @@ apksigner verify destination_file.apk
 
 ### Log Output
 Log initialization is always called. It initializes the date and time in a readable format to add in the log and in MS as a unique path name. All text passed to the log function is printed to console and added to a log text array.
+
 ![cli05.png](./images/cli05.png)
 
 If the log build option is set, the log is output to a text file in the Build and Output paths.
+
 ![cli06.png](./images/cli06.png)
 
 
