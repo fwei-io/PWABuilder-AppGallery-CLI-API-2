@@ -42,6 +42,7 @@ The system consists of the following parts, each part will be explained in detai
 
 ## System Diagram
 The following is the high-level system design for PWABuilder-AG.com.
+
 ![pwab-ag01](./images/pwab-ag01.png)
 
 ## Workflow
@@ -71,22 +72,26 @@ The following is the high-level system design for PWABuilder-AG.com.
  ![pwabuilder04](./images/pwabuilder04.png)
 
  * Step 1: Customize AppGallery Android APK options. The Key and Key store passwords are required. Both passwords must be the same, and at least 6 characters long. User can use Get Icon function to get 10 icon URLs. This feature is driven by Google Custom Search Engine.
-![pwabuilder05](./images/pwabuilder05.jpg)
-![pwabuilder06](./images/pwabuilder06.jpg)
- 
+  
+
+  ![pwabuilder05](./images/pwabuilder05.jpg)
+
+
+  ![pwabuilder06](./images/pwabuilder06.jpg)
+
  * Step 2: Select which HMS kit (Push, Analytics, Ads) to include in APK.
 
  ![pwabuilder07](./images/pwabuilder07.jpg)
- 
+
  * Step 3: Enter HMS Kit (Ads) configuration and upload agconnect-services.json. HMS Kit configuration will only be shown if HMS Ads Kit is selected.
 
  ![pwabuilder08](./images/pwabuilder08.jpg)
 
  * Step 4:
    * Option 1: Download APK - Developer can build and download the APK zip file.
- 
+
    ![pwabuilder09](./images/pwabuilder09.jpg)
- 
+
    When CP clicks “Build & Download My PWA” button, the follow flows will be started:
 1.  Verify all configurations.
 2.  Extract HMS kits configurations
@@ -175,6 +180,7 @@ Click “Publish APK to AppGallery” button to initiate the app submission.
   > Please setup both following variables in API .env file.
   >
   > cx = Google CSE ID, key = Google API Key
+  
   * Request Body:
 ```
 {
@@ -185,34 +191,35 @@ Click “Publish APK to AppGallery” button to initiate the app submission.
 ## Build Script CLI
 ### Getting Build Options
 The build script uses the NPM library Commander to receive build inputs. Beyond preventing a null error from occurring, the script does not check if any of the input values are properly formatted and is completely dependent on the front-end to do these checks.
+
 ![cli01.png](./images/cli01.png)
 
 
-1.  Package Name (Required) :: Must match the value on app project and AGCS JSON file.
-2.  App Name (Required) :: Changes the name displayed underneath the app icon on the home screen
-3.  URL (Required) :: Specifies the PWA URL
-4.  Icon (Required) :: Sets the app icon displayed on the home screen
-5.  Signing Alias (Required) :: To generate Keystore and sign app 
-6.  Signing Fullname (Required) :: To generate Keystore and sign app
-7.  Signing Organization (Required) :: To generate Keystore and sign app
-8.  Signing Organizational Unit (Required) :: To generate Keystore and sign app
-9.  Signing Country Code (Required) :: To generate Keystore and sign app
-10. Signing Key Password (Required) :: To generate Keystore and sign app. Minimum length of 6 characters.
-11. Signing Store Password (Required) :: To generate Keystore and sign app. Minimum length of 6 characters.
-12. Ads Splash ID (HMS/Optional) :: Enables Splash ad and sets Splash ad ID
-13. Ads Top Banner ID (HMS/Optional) :: Enables Banner ad at top position and sets Banner ad ID
-14. Ads Bottom Banner ID (HMS/Optional) :: Enables Banner ad at bottom position and sets Banner ad ID
-15. Analytics (HMS/Optional) :: Enables Analytics Kit from client. Analytics must also be enabled from AGC. 
-16. Push (HMS/Optional) :: Enables Push Kit from client. Push must also be enabled from AGC.
-17. Output Path (Required) :: Sets output path of generated files
-18. AGCS JSON Path (Required) :: Specifies AGCS JSON file path
-19. App ID (Optional) :: Required for Analytics and Push. Same value as AGC.
-20. CP ID (Optional) :: Required for Analytics and Push. Same value as AGC.
-21. Status Bar Color (Optional) :: Sets color of the top status bar.
-22. Splash Screen Color (Optional) :: Sets color of the loading splash screen.
-23. Navigation Bar Color (Optional) :: Sets color of the bottom navigation bar
-24. Navigation Bar Divider Color (Optional) :: Sets color of line at the top of navigation bar.
-25. Log Output (Optional) :: Enables log output to text file at output path.
+1.  **Package Name** (Required) :: Must match the value on app project and AGCS JSON file.
+2.  **App Name** (Required) :: Changes the name displayed underneath the app icon on the home screen
+3.  **URL** (Required) :: Specifies the PWA URL
+4.  **Icon** (Required) :: Sets the app icon displayed on the home screen
+5.  **Signing Alias** (Required) :: To generate Keystore and sign app 
+6.  **Signing Fullname** (Required) :: To generate Keystore and sign app
+7.  **Signing Organization** (Required) :: To generate Keystore and sign app
+8.  **Signing Organizational Unit** (Required) :: To generate Keystore and sign app
+9.  **Signing Country Code** (Required) :: To generate Keystore and sign app
+10. **Signing Key Password** (Required) :: To generate Keystore and sign app. Minimum length of 6 characters.
+11. **Signing Store Password** (Required) :: To generate Keystore and sign app. Minimum length of 6 characters.
+12. **Ads Splash ID** (HMS/Optional) :: Enables Splash ad and sets Splash ad ID
+13. **Ads Top Banner ID** (HMS/Optional) :: Enables Banner ad at top position and sets Banner ad ID
+14. **Ads Bottom Banner ID** (HMS/Optional) :: Enables Banner ad at bottom position and sets Banner ad ID
+15. **Analytics** (HMS/Optional) :: Enables Analytics Kit from client. Analytics must also be enabled from AGC. 
+16. **Push** (HMS/Optional) :: Enables Push Kit from client. Push must also be enabled from AGC.
+17. **Output Path** (Required) :: Sets output path of generated files
+18. **AGCS JSON Path** (Required) :: Specifies AGCS JSON file path
+19. **App ID** (Optional) :: Required for Analytics and Push. Same value as AGC.
+20. **CP ID** (Optional) :: Required for Analytics and Push. Same value as AGC.
+21. **Status Bar Color** (Optional) :: Sets color of the top status bar.
+22. **Splash Screen Color** (Optional) :: Sets color of the loading splash screen.
+23. **Navigation Bar Color** (Optional) :: Sets color of the bottom navigation bar
+24. **Navigation Bar Divider Color** (Optional) :: Sets color of line at the top of navigation bar.
+25. **Log Output** (Optional) :: Enables log output to text file at output path.
 
 
 ### Git Operations
@@ -282,18 +289,18 @@ storepass – store password
 keypass – key password
 ```
 
-3.  Align unsigned APK. (Optional)
+3.  **Align unsigned APK.** (Optional)
 Zipalign is an archive alignment tool to optimize APK file. The purpose is to ensure that all uncompressed data starts with a particular alignment relative to the start of the file. Specifically, it causes all uncompressed data within the APK, such as images or raw files, to be aligned on 4-byte boundaries. The benefit is a reduction in the amount of RAM consumed when running the application. 
 ```
 zipalign -v -p 4  source fname(from#1)   aligned_fname(new destination aligned fname)
 ```
 
-4.  Sign APK with generated private key.
+4.  **Sign APK with generated private key.**
 ```
 apksigner sign --ks keystore_filename  --out destination_file.apk aligned_fname.apk(from #3)
 ```
 
-5.  Verify APK is signed. (Optional Step, Not included in Build Script)
+5.  **Verify APK is signed.** (Optional Step, Not included in Build Script)
 Check whether the APK's signatures are expected to be confirmed as valid on all Android platforms that the APK supports.
 ```
 apksigner verify destination_file.apk
