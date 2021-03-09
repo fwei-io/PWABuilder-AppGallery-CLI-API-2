@@ -72,12 +72,9 @@ The following is the high-level system design for PWABuilder-AG.com.
  ![pwabuilder04](./images/pwabuilder04.png)
 
  * Step 1: Customize AppGallery Android APK options. The Key and Key store passwords are required. Both passwords must be the same, and at least 6 characters long. User can use Get Icon function to get 10 icon URLs. This feature is driven by Google Custom Search Engine.
-  
+
 
   ![pwabuilder05](./images/pwabuilder05.jpg)
-
-
-  ![pwabuilder06](./images/pwabuilder06.jpg)
 
  * Step 2: Select which HMS kit (Push, Analytics, Ads) to include in APK.
 
@@ -323,3 +320,4 @@ If the log build option is set, the log is output to a text file in the Build an
 
 
 If you have question, please email us - [developer_dtse@futurewei.com](mailto:developer_dtse@futurewei.com). Thank you.
+
