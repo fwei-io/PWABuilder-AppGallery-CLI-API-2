@@ -23,8 +23,13 @@ def build(pkg, url, kits, ads, agcs, signingAlias, signingFullname, signingOrgan
     folder = str("/tmp/pwa"+str(int(time.time()*1000)))
     icon = folder + "/ic_launcher.png"
     os.system("mkdir " + folder)
-    os.system("echo " + agcs + " | base64 --decode > " + folder + "/agconnect-services.json")
-    pwacmd = "/usr/bin/node " + os.getenv('CLI_PATH') + " --package " + pkg + " --url " + url + " --json " + folder + "/agconnect-services.json" + " --output " + folder
+    jsonpath = ""
+    if len(agcs) > 0:
+        os.system("echo " + agcs + " | base64 --decode > " + folder + "/agconnect-services.json")
+        jsonpath = " --json " + folder + "/agconnect-services.json"
+    else:
+        jsonpath = ""
+    pwacmd = "/usr/bin/node /home/ubuntu/pwa_builder/make_hms.js --package " + pkg + " --url " + url + jsonpath + " --output " + folder
     pwacmd += " --signingAlias " + signingAlias
     pwacmd += " --signingFullname " + signingFullname
     pwacmd += " --signingOrganization " + signingOrganization

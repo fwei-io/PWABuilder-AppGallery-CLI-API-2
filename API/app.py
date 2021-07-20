@@ -47,21 +47,31 @@ def build_apk():
     manifest['display'] = content['display']
     manifest['orientation'] = 'portrait'
     manifest['lang'] = 'English'
+    if len(content['agcs']) > 0:
+       agcs = content['agcs'].replace('data:application/json;base64,', '')
+    else:
+       agcs = ''
     os.mkdir(mfolder)
     with open(mfolder + mfile, 'w') as f:
         json.dump(manifest, f, indent=4)
+    if len(content['signing']['keyPassword']) > 0 and len(content['signing']['storePassword']) > 0:
+       keypw = content['signing']['keyPassword']
+       storepw = content['signing']['storePassword']
+    else:
+       keypw = 'abcdef'
+       storepw = 'abcdef'
     folder = build.build(content['packageId'],
                          content['host'],
                          content.get('HMSKits', ''),
                          content['ads_id'],
-                         content['agcs'].replace('data:application/json;base64,', ''),
+                         agcs,
                          content['signing']['alias'],
                          content['signing']['fullName'],
                          content['signing']['organization'],
                          content['signing']['organizationalUnit'],
                          content['signing']['countryCode'],
-                         content['signing']['keyPassword'],
-                         content['signing']['storePassword'],
+                         keypw,
+                         storepw,
                          content.get('iconUrl', ''),
                          content['whitelist'],
                          mfolder + mfile)
